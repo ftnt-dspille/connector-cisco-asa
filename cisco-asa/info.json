@@ -1,0 +1,365 @@
+{
+  "name": "cisco-asa",
+  "label": "Cisco ASA",
+  "description": "Cisco ASA connector that you can use to Get Version of the device, Block and Unblock IP Address, List and Terminate Sessions etc.",
+  "publisher": "Fortinet",
+  "cs_approved": true,
+  "cs_compatible": true,
+  "version": "2.0.2",
+  "category": "Firewall",
+  "icon_small_name": "cisco_small.png",
+  "icon_large_name": "cisco_large.png",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.2/cisco-asa/1751974111/cisco-asa-v2-0-2",
+  "configuration": {
+    "fields": [
+      {
+        "title": "Server URL",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "server_url",
+        "value": "",
+        "description": "FQDN of IP of the Cisco ASA server to which you will connect and perform the automated operations."
+      },
+      {
+        "title": "Username",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "text",
+        "name": "username",
+        "value": "",
+        "description": "Username used to connect to the Cisco ASA server to which you will connect and perform automated operations."
+      },
+      {
+        "title": "Password",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "password",
+        "name": "password",
+        "value": "",
+        "description": "Password used to connect to the Cisco ASA server to which you will connect and perform automated operations."
+      },
+      {
+        "title": "Context Mode",
+        "name": "context_mode",
+        "required": true,
+        "editable": true,
+        "visible": true,
+        "type": "select",
+        "options": [
+          "Single Context",
+          "Multi Context"
+        ],
+        "value": "Single Context",
+        "description": "Specify the context mode in which you want to run this connector configuration. You can choose between Single Context or Multi Context. If you choose 'Multi Context', then in the Context Name field, specify the context name other than 'admin' using which the user wants to execute actions.",
+        "onchange": {
+          "Multi Context": [
+            {
+              "title": "Context Name",
+              "name": "context_name",
+              "required": true,
+              "visible": true,
+              "editable": true,
+              "type": "text",
+              "value": "",
+              "tooltip": "Specify the context name other than 'admin' using which the user wants to execute actions.",
+              "description": "Specify the context name other than 'admin' using which the user wants to execute actions."
+            }
+          ]
+        }
+      },
+      {
+        "title": "Verify SSL",
+        "required": false,
+        "editable": true,
+        "visible": true,
+        "type": "checkbox",
+        "name": "verify_ssl",
+        "value": true,
+        "description": "Specifies whether the SSL certificate for the server is to be verified or not.\n\t\t\tDefaults to True."
+      }
+    ]
+  },
+  "operations": [
+    {
+      "operation": "get_version",
+      "title": "Get Version",
+      "category": "investigation",
+      "annotation": "get_version",
+      "description": "Retrieves the software version of the Cisco ASA server you have specified in the configuration parameters.",
+      "output_schema": {
+        "command": "",
+        "output": "",
+        "status": ""
+      },
+      "enabled": true,
+      "parameters": []
+    },
+    {
+      "operation": "block_ip",
+      "title": "Block IP",
+      "category": "containment",
+      "annotation": "block_ip",
+      "description": "Blocks the IP address on the Cisco ASA server based on the source and destination IP address and other input parameters you have specified.",
+      "output_schema": {
+        "message": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Destination IP Address",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "dest",
+          "value": "",
+          "description": "Destination IP address that you want to block.\n\t\t\tIf for a specific destination IP address you want to block all source IP addresses then specify any in this field."
+        },
+        {
+          "title": "Source IP Address",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "src",
+          "value": "",
+          "description": "Source IP address that you want to block.\n\t\t\tIf for a specific source IP address you want to block all destination IP addresses then specify any in this field.\nNote: You cannot enter any for both source and destination IP addresses."
+        },
+        {
+          "title": "Rule Direction",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "direction",
+          "options": [
+            "In",
+            "Out",
+            "Both"
+          ],
+          "description": "The direction in which you want the access list rules to work, i.e whether you want to block communication from source to destination (Out) or from destination to source (In) or from Both, i.e., block communication from source to destination and also from destination to source."
+        },
+        {
+          "title": "Access List Name",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "access_list",
+          "value": "",
+          "description": "Name of the access list that controls access to your network by preventing certain traffic from entering or exiting from your network."
+        },
+        {
+          "title": "Interface Name to Apply the Rule on",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "interface",
+          "value": "",
+          "description": "Name of the interface on which you want to apply the rule."
+        }
+      ]
+    },
+    {
+      "operation": "unblock_ip",
+      "title": "Unblock IP",
+      "category": "remediation",
+      "annotation": "unblock_ip",
+      "description": "Unblocks the IP address on the Cisco ASA server based on the source and destination IP address and other input parameters you have specified.",
+      "output_schema": {
+        "message": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Destination IP Address",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "dest",
+          "value": "",
+          "description": "Destination IP address that you want to unblock.\n\t\t\tIf for a specific destination IP address you want to unblock all source IP addresses then specify any in this field."
+        },
+        {
+          "title": "Source IP Address",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "src",
+          "value": "",
+          "description": "Source IP address that you want to unblock.\n\t\t\tIf for a specific source IP address you want to unblock all destination IP addresses then specify any in this field.\nNote: You cannot enter any for both source and destination IP addresses."
+        },
+        {
+          "title": "Rule direction",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "direction",
+          "options": [
+            "In",
+            "Out",
+            "Both"
+          ],
+          "description": "The direction in which you want the access list rules to work, i.e whether you want to unblock communication from source to destination (Out) or from destination to source (In) or from Both, i.e., unblock communication from source to destination and also from destination to source."
+        },
+        {
+          "title": "Access List Name",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "access_list",
+          "value": "",
+          "description": "Name of the access list that controls access to your network by preventing certain traffic from entering or exiting from your network."
+        },
+        {
+          "title": "Interface Name to Apply the Rule on",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "interface",
+          "value": "",
+          "description": "Name of the interface on which you want to apply the rule."
+        }
+      ]
+    },
+    {
+      "operation": "list_sessions",
+      "title": "List Sessions",
+      "category": "investigation",
+      "annotation": "list_sessions",
+      "description": "Lists the current VPN sessions running on the Cisco ASA server you have specified in the configuration parameters.",
+      "output_schema": {
+        "total_users": "",
+        "users": []
+      },
+      "parameters": [],
+      "enabled": true
+    },
+    {
+      "operation": "terminate_sessions",
+      "title": "Terminate Sessions",
+      "category": "Remediation",
+      "annotation": "terminate_sessions",
+      "description": "Terminates all VPN sessions running on the Cisco ASA server of the user you have specified.",
+      "output_schema": {},
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Username",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "username",
+          "value": "",
+          "description": "Name of the user whose running VPN sessions you want to terminate on Cisco ASA."
+        }
+      ]
+    },
+    {
+      "operation": "get_network_group",
+      "title": "Get Network Group",
+      "category": "investigation",
+      "annotation": "get_network_group",
+      "description": "Retrieves details of network objects or groups from Cisco ASA.",
+      "output_schema": {
+        "status": "",
+        "command": "",
+        "output": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Network Group Name",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "group_name",
+          "description": "Name of the network group name whose details you want to retrieve from Cisco ASA."
+        }
+      ]
+    },
+    {
+      "operation": "update_group",
+      "title": "Update Network Group",
+      "category": "containment",
+      "annotation": "update_group",
+      "description": "Updates a specific network object group in Cisco ASA by adding or removing a specified IP address from the network group you have specified.",
+      "output_schema": {
+        "status": "",
+        "command": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Network Group Name",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "group_name",
+          "description": "Name of the Network group that you want to update in Cisco ASA by adding or removing an IP address from the specified group."
+        },
+        {
+          "title": "Method",
+          "name": "method",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "options": [
+            "Add",
+            "Remove"
+          ],
+          "description": "Select the update action that you want to perform on the specified group. You can choose to Add or Remove an IP address from the specified network group."
+        },
+        {
+          "title": "IP Address",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "ip",
+          "value": "",
+          "description": "IP address that you want to update in the specified network group."
+        }
+      ]
+    },
+    {
+      "operation": "run_custom_commands",
+      "title": "Run Custom Commands",
+      "category": "containment",
+      "annotation": "run_custom_commands",
+      "description": "Run custom commands on the Cisco ASA server.",
+      "output_schema": {
+        "message": ""
+      },
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Commands",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "custom_commands",
+          "value": "",
+          "description": "Specify the Cisco ASA custom commands separated by a semicolon(;) separated. E.g. <command1>;<command2>;<command3>",
+          "tooltip": "Specify the Cisco ASA custom commands separated by a semicolon(;) separated. E.g. <command1>;<command2>;<command3>",
+          "placeholder": "E.g. <command1>; <command2>; <command3>"
+        }
+      ]
+    }
+  ]
+}
