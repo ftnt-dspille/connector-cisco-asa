@@ -1,0 +1,783 @@
+{
+  "type": "workflow_collections",
+  "data": [
+    {
+      "@context": "/api/3/contexts/WorkflowCollection",
+      "@type": "WorkflowCollection",
+      "name": "Sample - Cisco ASA - 2.0.2",
+      "description": "Cisco ASA connector playbooks that you can use to Get Version of the device, Block and Unblock IP Address, List and Terminate Sessions etc.",
+      "visible": true,
+      "image": "/api/3/images/193df8f2-8c41-4107-a89b-62a5489e1fda",
+      "id": 349,
+      "createDate": 1678345104.31275,
+      "modifyDate": 1678345104.31275,
+      "deletedAt": null,
+      "importedBy": [],
+      "recordTags": [],
+      "workflows": [
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Terminate Sessions",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Terminates all VPN sessions of the user you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614146248,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/998f4cc0-580a-49d1-bc1b-938fb561f585",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "377c9511-7cc9-402a-9010-0e3321566b09",
+                "title": "Cisco ASA: Terminate Sessions",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "998f4cc0-580a-49d1-bc1b-938fb561f585"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Terminate Sessions",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "",
+                "params": {
+                  "username": "FortiSOAR"
+                },
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "terminate_sessions",
+                "operationTitle": "Terminate Sessions",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "da0a1057-03d4-485f-ad9e-2b5e69083d35"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Terminate Sessions",
+              "targetStep": "/api/3/workflow_steps/da0a1057-03d4-485f-ad9e-2b5e69083d35",
+              "sourceStep": "/api/3/workflow_steps/998f4cc0-580a-49d1-bc1b-938fb561f585",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "f0944113-4f20-4301-947a-c318e0a21569"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "28538b7a-7ade-4e83-839a-58acdf94da42",
+          "id": 4886,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Unblock IP",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Unblocks the IP address you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614145093,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/04da61e6-e3f0-467d-98e0-24d7ed80b0dd",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "cab541ef-5b16-4f1f-bb3b-a42d49822a16",
+                "title": "Cisco ASA: Unblock IP",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "04da61e6-e3f0-467d-98e0-24d7ed80b0dd"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Unblock IP",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "710d5b69-4685-4407-98f1-3de22c0220f3",
+                "params": {
+                  "src": "192.168.90.93",
+                  "dest": "32.13.75.38",
+                  "direction": "Out",
+                  "interface": "inside",
+                  "access_list": "testaccesslist"
+                },
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "unblock_ip",
+                "operationTitle": "Unblock IP",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "85ee8178-303b-4ef6-a8c0-65faa08f9edc"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Unblock IP",
+              "targetStep": "/api/3/workflow_steps/85ee8178-303b-4ef6-a8c0-65faa08f9edc",
+              "sourceStep": "/api/3/workflow_steps/04da61e6-e3f0-467d-98e0-24d7ed80b0dd",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "962c5ebe-c848-4efb-962f-96aeb6bf478e"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "40b6cc2d-1c77-466d-bb27-7b00f49cab22",
+          "id": 4887,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Version",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Retrieves the software version of the Cisco ASA server you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614145524,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/aa1d2a26-38ca-43df-9369-1e307aac72d2",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Version",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "",
+                "params": [],
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "get_version",
+                "operationTitle": "Get Version",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "46413492-4c1c-454d-b1ea-83c6825ed8ca"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "08213266-3a2c-4ea9-8ef0-d1c82f5977f9",
+                "title": "Cisco ASA: Get Version",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "aa1d2a26-38ca-43df-9369-1e307aac72d2"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Version",
+              "targetStep": "/api/3/workflow_steps/46413492-4c1c-454d-b1ea-83c6825ed8ca",
+              "sourceStep": "/api/3/workflow_steps/aa1d2a26-38ca-43df-9369-1e307aac72d2",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "6d2742bb-f27e-4d08-b35b-ce49cc47fba7"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "5ec6d489-c510-4983-a633-8fde243b236a",
+          "id": 4888,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Block IP",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Blocks the IP address you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614145152,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/88d85aaa-a95c-4259-b62e-a1c8490e02b5",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "0b88867b-c314-4aac-ae09-1d0065ef361e",
+                "title": "Cisco ASA: Block IP",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "88d85aaa-a95c-4259-b62e-a1c8490e02b5"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Block IP",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "710d5b69-4685-4407-98f1-3de22c0220f3",
+                "params": {
+                  "src": "192.168.90.93",
+                  "dest": "32.13.75.38",
+                  "direction": "Out",
+                  "interface": "inside",
+                  "access_list": "testaccesslist"
+                },
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "block_ip",
+                "operationTitle": "Block IP",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "fb980660-a8a8-4d2a-9123-1783e6cce2da"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Block IP",
+              "targetStep": "/api/3/workflow_steps/fb980660-a8a8-4d2a-9123-1783e6cce2da",
+              "sourceStep": "/api/3/workflow_steps/88d85aaa-a95c-4259-b62e-a1c8490e02b5",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "f751c2a5-0740-427c-a85f-440d2f75e6e9"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "970dd7b4-96ac-4c46-b8d7-2615665a20de",
+          "id": 4889,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Run Custom Commands",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Run custom commands on the Cisco ASA server.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1678345254,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/c9ac32f7-99d5-4439-abe9-2d7849b115e4",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Run Custom Commands",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "",
+                "params": {
+                  "custom_commands": "ls; pwd"
+                },
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "run_custom_commands",
+                "operationTitle": "Run Custom Commands",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "180",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "56d3d74e-a829-4305-8978-1f0ffd8964a0"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "e43a87ee-2a1f-4a9f-96f0-737af360919f",
+                "title": "Cisco ASA: Block IP",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "c9ac32f7-99d5-4439-abe9-2d7849b115e4"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Block IP",
+              "targetStep": "/api/3/workflow_steps/56d3d74e-a829-4305-8978-1f0ffd8964a0",
+              "sourceStep": "/api/3/workflow_steps/c9ac32f7-99d5-4439-abe9-2d7849b115e4",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "bf406e32-7352-40a8-bcc8-b1e4f5fa2a36"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "9b109081-ad80-452b-b358-df9072798702",
+          "id": 4893,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Update Network Group",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Update network object groups by adding or removing IP addresses from a specified group.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614160453,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/e9664305-e524-481e-b8a8-c1674ed4a85e",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "57fcf612-c4e5-4cae-845b-927ef72885ac",
+                "title": "Cisco ASA: Update Network Group",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "e9664305-e524-481e-b8a8-c1674ed4a85e"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Update Network Group",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "710d5b69-4685-4407-98f1-3de22c0220f3",
+                "params": {
+                  "ip": "1.2.1.22",
+                  "method": "Remove",
+                  "group_name": "FSR_IP_Group"
+                },
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "update_group",
+                "operationTitle": "Update Network Group",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "f74a46ae-f4d6-4c78-a995-c86339828507"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Update Network Group",
+              "targetStep": "/api/3/workflow_steps/f74a46ae-f4d6-4c78-a995-c86339828507",
+              "sourceStep": "/api/3/workflow_steps/e9664305-e524-481e-b8a8-c1674ed4a85e",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "0de66963-b033-44bc-971b-9174280fe45c"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "d3a394e9-3010-4922-ad8d-9bb6bb0d8ff7",
+          "id": 4890,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "List Sessions",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Lists the current VPN sessions running on the Cisco ASA server you have specified.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614145748,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/54e6e00a-f23f-4c7d-8d30-3171f5221f77",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "List Sessions",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "",
+                "params": [],
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "list_sessions",
+                "operationTitle": "List Sessions",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "21b55e7a-e34d-49ad-a37a-4a866442b819"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "aa700453-5c15-418a-acdc-61cfc07ac425",
+                "title": "Cisco ASA: List Sessions",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "54e6e00a-f23f-4c7d-8d30-3171f5221f77"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> List Sessions",
+              "targetStep": "/api/3/workflow_steps/21b55e7a-e34d-49ad-a37a-4a866442b819",
+              "sourceStep": "/api/3/workflow_steps/54e6e00a-f23f-4c7d-8d30-3171f5221f77",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "16b86694-10aa-4985-82d8-0230101b783d"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "e36e4c5a-4952-45bc-a68f-44dc7443b8d5",
+          "id": 4891,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        },
+        {
+          "@type": "Workflow",
+          "triggerLimit": null,
+          "name": "Get Network Group",
+          "aliasName": null,
+          "tag": "#Cisco ASA",
+          "description": "Get network object/groups details.",
+          "isActive": false,
+          "debug": false,
+          "singleRecordExecution": false,
+          "remoteExecutableFlag": false,
+          "parameters": [],
+          "synchronous": false,
+          "lastModifyDate": 1614160458,
+          "collection": "/api/3/workflow_collections/97e4c1c1-0f72-430f-b0bd-3f16f8137be5",
+          "versions": [],
+          "triggerStep": "/api/3/workflow_steps/f637cdd3-49f2-4faa-9c26-90772b0bbb4b",
+          "steps": [
+            {
+              "@type": "WorkflowStep",
+              "name": "Get Network Group",
+              "description": null,
+              "arguments": {
+                "name": "Cisco ASA",
+                "config": "710d5b69-4685-4407-98f1-3de22c0220f3",
+                "params": {
+                  "group_name": "FSR_IP_Group"
+                },
+                "version": "2.0.2",
+                "connector": "cisco-asa",
+                "operation": "get_network_group",
+                "operationTitle": "Get Network Group",
+                "step_variables": {
+                  "output_data": "{{vars.result}}"
+                }
+              },
+              "status": null,
+              "top": "120",
+              "left": "188",
+              "stepType": "/api/3/workflow_step_types/0bfed618-0316-11e7-93ae-92361f002671",
+              "group": null,
+              "uuid": "bfadadde-431f-4a5b-bee4-1f9ae0fab4b1"
+            },
+            {
+              "@type": "WorkflowStep",
+              "name": "Alerts",
+              "description": null,
+              "arguments": {
+                "route": "75711d87-d48b-4426-b6b5-cb1a30bc2b24",
+                "title": "Cisco ASA: Get Network Group",
+                "resources": [
+                  "alerts"
+                ],
+                "inputVariables": [],
+                "step_variables": {
+                  "input": {
+                    "records": "{{vars.input.records[0]}}"
+                  }
+                },
+                "noRecordExecution": true,
+                "singleRecordExecution": false
+              },
+              "status": null,
+              "top": "20",
+              "left": "20",
+              "stepType": "/api/3/workflow_step_types/f414d039-bb0d-4e59-9c39-a8f1e880b18a",
+              "group": null,
+              "uuid": "f637cdd3-49f2-4faa-9c26-90772b0bbb4b"
+            }
+          ],
+          "routes": [
+            {
+              "@type": "WorkflowRoute",
+              "name": "Alerts -> Get Network Group",
+              "targetStep": "/api/3/workflow_steps/bfadadde-431f-4a5b-bee4-1f9ae0fab4b1",
+              "sourceStep": "/api/3/workflow_steps/f637cdd3-49f2-4faa-9c26-90772b0bbb4b",
+              "label": null,
+              "isExecuted": false,
+              "uuid": "4f65eef7-0e77-4c95-9265-80ebffd5d781"
+            }
+          ],
+          "groups": [],
+          "priority": null,
+          "uuid": "e3de9dd4-6c11-4f4d-a6be-a929a0f3d8ec",
+          "id": 4892,
+          "owners": [],
+          "isPrivate": false,
+          "deletedAt": null,
+          "importedBy": [],
+          "recordTags": [
+            "Cisco",
+            "cisco-asa"
+          ]
+        }
+      ]
+    }
+  ],
+  "exported_tags": [
+    "Cisco",
+    "cisco-asa"
+  ]
+}
