@@ -24,3 +24,5 @@ EXECUTED_COMMAND = "Executed command =  '{}'"
 ANY_POLICY = 'any'
 ERROR_SSH_CONNECTION_FAILED = 'SSH connection to device failed'
 ERROR_INVALID_NETWORK_GROUP = 'Invalid network-group'
+REST_TIMEOUT = 60
+REST_METHODS = ('GET', 'POST', 'PUT', 'PATCH', 'DELETE')

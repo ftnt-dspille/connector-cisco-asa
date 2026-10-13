@@ -8,7 +8,7 @@ import validators
 from .const import *
 from .ciscoasaconnect import CiscoASAConnect
 from connectors.core.connector import get_logger, ConnectorError
-from .utils import block_ip_command, update_group_command
+from .utils import block_ip_command, update_group_command, json_object
 
 logger = get_logger('ciscoasa')
 
@@ -306,6 +306,20 @@ def get_network_group(config, params):
     return obj._get_network_group(config, params)
 
 
+def execute_api_request(config, params):
+    """Call any ASA REST API endpoint with the configured credentials.
+
+    `endpoint` is a path on the configured server, for example
+    /api/monitoring/serialnumber. A full URL is refused.
+    """
+    method = (params.get('method') or 'GET').upper()
+    if method not in REST_METHODS:
+        raise ConnectorError('Method must be GET, POST, PUT, PATCH or DELETE')
+    query = json_object(params.get('query_params'), 'Query Parameters')
+    body = json_object(params.get('request_body'), 'Request Body')
+    return Ciscoasa()._rest_request(config, method, params.get('endpoint'), query, body)
+
+
 operations = {
     'get_version': get_version,
     'block_ip': block_ip,
@@ -314,5 +328,6 @@ operations = {
     'terminate_sessions': terminate_sessions,
     'update_group': update_group,
     'get_network_group': get_network_group,
-    'run_custom_commands': run_custom_commands
+    'run_custom_commands': run_custom_commands,
+    'execute_api_request': execute_api_request
 }

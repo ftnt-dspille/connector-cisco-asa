@@ -5,10 +5,12 @@
   Copyright end """
 
 import paramiko
+import requests
 import socket
 import sys
 from connectors.core.connector import get_logger, ConnectorError
 from .const import *
+from .utils import safe_endpoint
 
 logger = get_logger('ciscoasa')
 
@@ -145,3 +147,26 @@ class CiscoASAConnect():
                 logger.error("Exception Occurred in command {0}".format(cmd))
                 raise ConnectorError(str(e))
         return output_data
+
+    def _rest_request(self, config, method, endpoint, params=None, body=None):
+        """Any ASA REST API call, with the configured username and password."""
+        path = safe_endpoint(endpoint)
+        url = 'https://' + config.get('server_url').strip('/') + path
+        verify = config.get('verify_ssl', True)
+        if isinstance(verify, str):
+            verify = verify.strip().lower() not in ('false', '0', 'no')
+        try:
+            resp = requests.request(method, url, params=params, json=body,
+                                    auth=(config.get('username'), config.get('password')),
+                                    headers={'User-Agent': 'REST API Agent', 'Accept': 'application/json'},
+                                    verify=bool(verify), timeout=REST_TIMEOUT, allow_redirects=False)
+        except requests.exceptions.RequestException as e:
+            raise ConnectorError('Request to the Cisco ASA failed: {0}'.format(e))
+        if resp.status_code >= 400:
+            raise ConnectorError('Cisco ASA returned HTTP {0}: {1}'.format(resp.status_code, resp.text[:300]))
+        if not resp.content:
+            return {}
+        try:
+            return resp.json()
+        except ValueError:
+            return {'raw': resp.text}

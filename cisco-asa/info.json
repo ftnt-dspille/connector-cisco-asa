@@ -5,11 +5,11 @@
   "publisher": "Fortinet",
   "cs_approved": true,
   "cs_compatible": true,
-  "version": "2.0.2",
+  "version": "2.1.0",
   "category": "Firewall",
   "icon_small_name": "cisco_small.png",
   "icon_large_name": "cisco_large.png",
-  "help_online": "https://docs.fortinet.com/document/fortisoar/2.0.2/cisco-asa/1751974111/cisco-asa-v2-0-2",
+  "help_online": "https://docs.fortinet.com/document/fortisoar/2.1.0/cisco-asa/1751974111/cisco-asa-v2-1-0",
   "configuration": {
     "fields": [
       {
@@ -358,6 +358,66 @@
           "description": "Specify the Cisco ASA custom commands separated by a semicolon(;) separated. E.g. <command1>;<command2>;<command3>",
           "tooltip": "Specify the Cisco ASA custom commands separated by a semicolon(;) separated. E.g. <command1>;<command2>;<command3>",
           "placeholder": "E.g. <command1>; <command2>; <command3>"
+        }
+      ]
+    },
+    {
+      "operation": "execute_api_request",
+      "title": "Execute API Request",
+      "category": "miscellaneous",
+      "annotation": "execute_api_request",
+      "description": "Calls any Cisco ASA REST API endpoint with the configured credentials. A full URL is refused so the credentials only ever go to the configured server.",
+      "output_schema": {},
+      "enabled": true,
+      "parameters": [
+        {
+          "title": "Endpoint",
+          "required": true,
+          "editable": true,
+          "visible": true,
+          "type": "text",
+          "name": "endpoint",
+          "value": "",
+          "description": "Path on the configured Cisco ASA, for example /api/monitoring/serialnumber.",
+          "tooltip": "Path on the configured Cisco ASA, for example /api/monitoring/serialnumber.",
+          "placeholder": "e.g. /api/monitoring/serialnumber"
+        },
+        {
+          "title": "Method",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "select",
+          "name": "method",
+          "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE"
+          ],
+          "value": "GET",
+          "description": "HTTP method. Defaults to GET."
+        },
+        {
+          "title": "Query Parameters",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "query_params",
+          "value": "",
+          "description": "(Optional) JSON object of query string parameters."
+        },
+        {
+          "title": "Request Body",
+          "required": false,
+          "editable": true,
+          "visible": true,
+          "type": "json",
+          "name": "request_body",
+          "value": "",
+          "description": "(Optional) JSON object sent with POST, PUT and PATCH."
         }
       ]
     }
